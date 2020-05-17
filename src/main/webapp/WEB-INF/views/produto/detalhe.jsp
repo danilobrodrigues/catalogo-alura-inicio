@@ -19,7 +19,7 @@
 					<div class="col-sm-7">
 						<p>${produto.descricao}</p>
 						<br />
-						<h3>
+						<h3 class="alert alert-danger">
 							<fmt:formatNumber type="currency" value="${produto.preco}" />
 						</h3>
 
