@@ -21,7 +21,7 @@ public class JpaConfigurator {
 		String url = System.getenv("url");
 		String password = System.getenv("senha");
 		String user = System.getenv("usuario");
-		String dbname = System.getenv("dadabase");
+		String dbname = System.getenv("database");
 
 		if ( url == null ) url = "localhost";
 		if ( user == null ) user = "danilao";
