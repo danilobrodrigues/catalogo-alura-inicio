@@ -21,18 +21,21 @@ public class JpaConfigurator {
 		String url = System.getenv("url");
 		String password = System.getenv("senha");
 		String user = System.getenv("usuario");
+		String dbname = System.getenv("dadabase");
 
 		if ( url == null ) url = "localhost";
 		if ( user == null ) user = "danilao";
+		if ( dbname == null ) dbname = "alura_aws";
 
 	    DriverManagerDataSource dataSource = new DriverManagerDataSource();
 		
 	    System.out.println("url: " + url);
 	    System.out.println("user: " + user);
 	    System.out.println("pass: " + password);
+	    System.out.println("database: " + dbname);
 		
 	    dataSource.setDriverClassName("com.mysql.jdbc.Driver");
-	    dataSource.setUrl("jdbc:mysql://" + url + "/alura_aws");
+	    dataSource.setUrl("jdbc:mysql://" + url + "/" + dbname);
 	    dataSource.setUsername(user);
 	    dataSource.setPassword(password == null ? "eusei" : password);
 
