@@ -11,6 +11,7 @@ import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.TransactionCallbackWithoutResult;
 import org.springframework.transaction.support.TransactionTemplate;
 
+import br.com.caelum.dao.CategoriaDao;
 import br.com.caelum.model.Categoria;
 import br.com.caelum.model.Loja;
 import br.com.caelum.model.Produto;
@@ -24,6 +25,9 @@ public class CriadorDeProdutos {
 	@Autowired
 	private JpaTransactionManager transactionManager;
 
+	@Autowired
+	CategoriaDao categoriaDao;
+	
 	@PostConstruct
 	public void init() {
 		TransactionTemplate template = new TransactionTemplate(
@@ -32,6 +36,11 @@ public class CriadorDeProdutos {
 			@Override
 			protected void doInTransactionWithoutResult(TransactionStatus status) {
 
+				//Se ja houver categoria cadastrada, significa que nao precisa mais popular dados
+				if (categoriaDao.getCategorias().size() > 0) {
+					return;
+				}
+				
 				Loja casaDoCodigo = new Loja();
 				casaDoCodigo.setNome("Casa do Código");
 
